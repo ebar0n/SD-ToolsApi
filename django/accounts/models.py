@@ -1,5 +1,4 @@
 from django.contrib.auth.models import AbstractUser
-
 from django.utils.translation import ugettext as _
 
 

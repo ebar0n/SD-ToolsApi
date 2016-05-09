@@ -27,6 +27,11 @@ before_install:
     - sudo mv docker-compose /usr/local/bin
 
 script:
+  - docker pull ebar0n/proxy-cache
+  - docker run --name proxy-cache-1 -d ebar0n/proxy-cache
+  - docker run --name proxy-cache-2 -d --publish 3128:3128 --publish 3141:3141 --publish 3142:3142 --volume /data/proxy-cache/squid/:/var/spool/squid3 --volume /data/proxy-cache/devpi:/var/.devpi/server --volume /data/proxy-cache/aptcacherng:/var/cache/apt-cacher-ng ebar0n/proxy-cache
+  - docker inspect proxy-cache-1 | grep '"IPAddress":'
+  - docker inspect proxy-cache-2 | grep '"IPAddress":'
   - cp env.example django/toolsapi/settings/.env
   - docker-compose build
   - docker-compose up -d postgres
