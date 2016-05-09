@@ -1,7 +1,19 @@
 # toolsapi App [![Build Status](https://travis-ci.org/ebar0n/SD-ToolsApi.svg)](https://travis-ci.org/ebar0n/SD-ToolsApi)
 
+## Integrate sevices:
 
-## BackEnd
+0. Github `code control` [Github Docs](https://developer.github.com/)
+0. Toggl `time control` [Toggl Docs](https://github.com/toggl/toggl_api_docs/blob/master/toggl_api.md)
+0. Trello `tasks control` [Trello Docs](https://developers.trello.com/)
+0. Taiga `tasks control` [Taiga Docs](http://taigaio.github.io/taiga-doc/dist/api.html)
+0. Quickbooks `Invoice control` [Intuit Docs](https://developer.intuit.com/docs)
+0. Telegram `Communication control` [Telegram Docs](https://core.telegram.org/api)
+0. Slack `Communication control` [Slack Docs](https://api.slack.com/)
+0. Digital Ocean `Server deployment control` [Digitalocean Docs](https://developers.digitalocean.com/documentation/)
+
+What you want is to create a repo on Github, use Trello or Taiga for project management, registering time with Toggl, check invoice with quickbooks, notify interactions slack and telegram, as a final point, a click for of the project deploy to digitalocean.
+
+## Instructions for Use
 
 ### Install and configure docker
 0. Install and configure Docker
