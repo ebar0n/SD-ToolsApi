@@ -1,0 +1,85 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'css/mui.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/jquery.dataTables.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+    <script src="{% static 'js/mui.min.js' %}"></script>
+    <script src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+    <script src="{% static 'js/jquery.dataTables.min.js' %} "></script>
+    <script src="{% static 'js/script.js' %}"></script>
+    <title>Tools Api</title>
+  </head>
+  <body>
+    <div id="sidedrawer" class="mui--no-user-select">
+      <div id="sidedrawer-brand" class="mui--appbar-line-height">
+        Tools Api
+      </div>
+      <div class="mui-divider"></div>
+      <ul>
+        <li>
+          <strong>Github</strong>
+          <ul>
+            <li><a href="https://developer.github.com/" target="_blank">Referencia API</a></li>
+            <li><a href="{% url 'social:begin' 'github' %}?next={{ request.path }}">Login</a></li>
+            <li><a href="{% url 'repositories' %}">Repositorios</a></li>
+            <li><a href="{% url 'logout' %}">Salir</a></li>
+          </ul>
+        </li>
+        <li>
+          <strong>Toggl</strong>
+          <ul>
+            <li><a href="https://github.com/toggl/toggl_api_docs/blob/master/toggl_api.md" target="_blank">Referencia API</a></li>
+            <li><a href="#">Crear proyecto</a></li>
+            <li><a href="#">Registrar tiempo</a></li>
+            <li><a href="#">Consultar tiempo</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <header id="header">
+      <div class="mui-appbar mui--appbar-line-height">
+        <div class="mui-container-fluid">
+          <a class="sidedrawer-toggle mui--visible-xs-inline-block mui--visible-sm-inline-block js-show-sidedrawer">☰</a>
+          <a class="sidedrawer-toggle mui--hidden-xs mui--hidden-sm js-hide-sidedrawer">☰</a>
+          <span class="mui--pull-right">
+            {% if user and not user.is_anonymous %}
+              Bienvenid@ {{ user.get_full_name }}.
+            {% endif %}
+          </span>
+          <span class="mui--text-title mui--visible-xs-inline-block mui--visible-sm-inline-block">Brand.io</span>
+        </div>
+      </div>
+    </header>
+    <div id="content-wrapper">
+      <div class="mui--appbar-height"></div>
+      <div class="mui-container-fluid">
+        {% block content %}
+
+        {% endblock %}
+      </div>
+    </div>
+    <footer id="footer">
+      <div class="mui-container-fluid">
+        <br>
+        <p>Tools Api. Sistemas Distribuidos - UNET. Prof. Hedry Fortoul</p>
+        <p>
+          <small>
+            Repositorio en <a href="https://github.com/ebar0n/SC-Routes" target="_blank">GitHub</a>
+            <br>
+            Hecho por <a href="https://twitter.com/ebar0n" target="_blank">@ebar0n</a> y <a href="https://twitter.com/lzambrano18" target="_blank">@lzambrano18</a>
+            <br>
+            Con <a href="https://www.djangoproject.com/" target="_blank">Django Framework</a> y estilizado con <a href="https://www.muicss.com">MUI</a>
+          </small>
+        </p>
+
+
+      </div>
+    </footer>
+  </body>
+</html>
+  

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<h1>Repositorios relacionados Github</h1>
+{% if user.is_anonymous %}
+	<h3>Debe iniciar sessión</h3>
+{% endif %}
+
+<br>
+<table id="repositories" class="mui-table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Lenguaje</th>
+      <th>Fork</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for repo in repositories %}
+  		<tr>
+  		  <td><a target="_blank" href="{{ repo.html_url }}">{{ repo.name }}</a></td>
+  		  <th>{{ repo.language }}</th>
+  		  <td>{% if repo.fork %}Si{% else %}No{% endif %}</td>
+  		</tr>
+  		
+  	{% endfor %}
+  </tbody>
+</table>
+<br>
+
+<script type="text/javascript">
+	$('#repositories').DataTable();
+</script>
+
+{% endblock %}
