@@ -1,0 +1,26 @@
+FROM python:3.5
+RUN pip install --upgrade pip
+RUN apt-get update
+
+MAINTAINER ToolsApiTeam
+
+ENV PYTHONUNBUFFERED 1
+
+RUN echo 'Acquire::http { Proxy "http://172.17.0.2:3142"; };' >> /etc/apt/apt.conf.d/01proxy
+
+RUN apt-get install -y postgresql-client \
+    gcc gettext  \
+    --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
+COPY ./requirements/base.pip /requirements/base.pip
+COPY ./requirements/development.pip /requirements/development.pip
+
+RUN pip install -r /requirements/development.pip \
+	-i http://172.17.0.2:3141/root/pypi/ --trusted-host 172.17.0.2 \
+	--timeout 300
+
+COPY ./compose/django/entrypoint.sh /entrypoint.sh
+RUN sed -i 's/\r//' /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
