@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<h1>Projectos relacionados Toggl</h1>
+
+
+<br>
+<table id="projects" class="mui-table">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Privado</th>
+      <th>Activo</th>
+      <th>Creado</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  	{% for project in projects %}
+  		<tr>
+  		  <td>{{ project.name }}</td>
+  		  <th>{{ project.is_private }}</th>
+  		  <td>{{ project.active }}</td>
+        <td>{{ project.at }}</td>
+  		</tr>
+  	{% endfor %}
+  </tbody>
+</table>
+<br>
+
+<script type="text/javascript">
+	$('#projects').DataTable();
+</script>
+
+{% endblock %}
